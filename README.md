@@ -59,6 +59,7 @@ $ npm run test:cov
 ```
 
 ```docker command
+# Command to run docker container
 $ docker-compose up dev
 ```
 
