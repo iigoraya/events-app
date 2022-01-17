@@ -1,13 +1,31 @@
-import * as mongoose from 'mongoose';
-import * as bcrypt from 'bcrypt';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+import { Exclude, Transform } from 'class-transformer';
 import { NextFunction } from 'express';
+import * as bcrypt from 'bcrypt';
 
-export const UserSchema = new mongoose.Schema({
-  email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
-  name: { type: String, required: false },
-  address: { type: String, required: false },
-});
+export type UserDocument = User & Document;
+
+@Schema()
+export class User {
+  @Transform(({ value }) => value.toString())
+  _id: string;
+
+  @Prop({ unique: true, required: true })
+  email: string;
+
+  @Prop()
+  name: string;
+
+  @Prop({ required: true })
+  @Exclude()
+  password: string;
+
+  @Prop()
+  address: string;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);
 
 UserSchema.pre('save', async function (next: NextFunction) {
   try {

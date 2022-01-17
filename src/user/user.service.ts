@@ -2,9 +2,10 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/types/user';
-import { RegisterDTO } from './register.dto';
+import { RegisterDTO } from '../dto/register.dto';
 import * as bcrypt from 'bcrypt';
-import { LoginDTO } from 'src/auth/login.dto';
+import { LoginDTO } from 'src/dto/login.dto';
+import { UpdateDTO } from 'src/dto/update.dto';
 import { Payload } from 'src/types/payload';
 
 @Injectable()
@@ -42,7 +43,13 @@ export class UserService {
     }
   }
 
-  getAllUsers = async () => await this.userModel.find();
+  getAllUsers = async (): Promise<User[]> => await this.userModel.find().exec();
+
+  update = async (id: string, updateDTO: UpdateDTO): Promise<User> =>
+    await this.userModel.findByIdAndUpdate(id, updateDTO).exec();
+
+  delete = async (id: string): Promise<User> =>
+    await this.userModel.findByIdAndDelete(id).exec();
 
   sanitizeUser(user: User) {
     const sanitized = user.toObject();
