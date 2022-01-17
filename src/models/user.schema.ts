@@ -5,7 +5,7 @@ import { NextFunction } from 'express';
 export const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  name: { type: String, required: true },
+  name: { type: String, required: false },
   address: { type: String, required: false },
 });
 
