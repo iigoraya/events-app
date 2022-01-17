@@ -12,10 +12,10 @@ export class AuthController {
     private authService: AuthService,
   ) {}
 
-  @Get('/private')
+  @Get('/users')
   @UseGuards(AuthGuard('jwt'))
   async hiddenInformation() {
-    return 'This is a protected route!';
+    return await this.userService.getAllUsers();
   }
 
   @Get('/public')

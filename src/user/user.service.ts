@@ -42,6 +42,8 @@ export class UserService {
     }
   }
 
+  getAllUsers = async () => await this.userModel.find();
+
   sanitizeUser(user: User) {
     const sanitized = user.toObject();
     delete sanitized['password'];
