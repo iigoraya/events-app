@@ -36,4 +36,3 @@ export function MongooseClassSerializerInterceptor(
     }
   };
 }
-//Reference : https://wanago.io/2021/08/23/api-nestjs-relationships-mongodb/

@@ -10,12 +10,12 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
-import { RegisterDTO } from 'src/dto/register.dto';
-import { UserService } from 'src/user/user.service';
+import { RegisterDTO } from 'src/dto/user/register.dto';
+import { UserService } from 'src/modules/user/user.service';
 import { AuthService } from './auth.service';
-import { LoginDTO } from 'src/dto/login.dto';
-import { UpdateDTO } from 'src/dto/update.dto';
-import { MongooseClassSerializerInterceptor } from '../helpers/mongooseClassSerializer.interceptor';
+import { LoginDTO } from 'src/dto/user/login.dto';
+import { UpdateDTO } from 'src/dto/user/update.dto';
+import { MongooseClassSerializerInterceptor } from '../../interceptors/mongooseClassSerializer.interceptor';
 
 @Controller('auth')
 @UseInterceptors(MongooseClassSerializerInterceptor)

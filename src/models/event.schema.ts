@@ -17,15 +17,23 @@ export class Event {
   @Prop()
   description: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
-  @Type(() => User)
-  creator: User;
+  @Prop()
+  location: string;
+
+  @Prop({ required: true })
+  time: Date;
 
   @Prop({
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: User.name }],
   })
-  @Type(() => User)
-  members: User;
+  members: User[];
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: User.name,
+    required: true,
+  })
+  creator: User;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

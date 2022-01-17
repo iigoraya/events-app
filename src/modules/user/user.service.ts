@@ -2,10 +2,10 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/types/user';
-import { RegisterDTO } from '../dto/register.dto';
+import { RegisterDTO } from '../../dto/user/register.dto';
 import * as bcrypt from 'bcrypt';
-import { LoginDTO } from 'src/dto/login.dto';
-import { UpdateDTO } from 'src/dto/update.dto';
+import { LoginDTO } from 'src/dto/user/login.dto';
+import { UpdateDTO } from 'src/dto/user/update.dto';
 import { Payload } from 'src/types/payload';
 
 @Injectable()
