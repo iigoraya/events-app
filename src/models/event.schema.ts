@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, ObjectId } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { User } from './user.schema';
-import { Transform, Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 
 export type EventDocument = Event & Document;
 

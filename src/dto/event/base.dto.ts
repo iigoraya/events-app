@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsDateString } from 'class-validator';
+import { User } from 'src/types/user';
 
 export class BaseEventDTO {
   @IsNotEmpty()
@@ -6,8 +7,8 @@ export class BaseEventDTO {
 
   @IsDateString()
   time: string;
-  
+
   description?: string;
   location?: string;
-  
+  members?: User[];
 }

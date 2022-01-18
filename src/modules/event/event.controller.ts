@@ -8,6 +8,7 @@ import {
   Put,
   Param,
   UseInterceptors,
+  Req,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 import { BaseEventDTO } from 'src/dto/event/base.dto';
@@ -21,7 +22,7 @@ export class EventController {
   constructor(private eventService: EventService) {}
 
   @Post()
-  async create(@Body() baseEventDTO: BaseEventDTO) {
-    await this.eventService.create();
+  async create(@Body() baseEventDTO: BaseEventDTO, @Req() req: any) {
+    return await this.eventService.create(baseEventDTO, req.user);
   }
 }
