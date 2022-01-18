@@ -18,4 +18,10 @@ export class EventService {
     });
     return event.save();
   }
+
+  getAllEvents = async (): Promise<Event[]> =>
+    await this.eventModel.find().populate('members').populate('creator').exec();
+
+  delete = async (id: string): Promise<Event> =>
+    await this.eventModel.findByIdAndDelete(id).exec();
 }

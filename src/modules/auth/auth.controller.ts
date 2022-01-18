@@ -25,7 +25,7 @@ export class AuthController {
     private authService: AuthService,
   ) {}
 
-  @Get('/users')
+  @Get('users')
   @UseGuards(AuthGuard('jwt'))
   async getAllUsers() {
     return await this.userService.getAllUsers();
